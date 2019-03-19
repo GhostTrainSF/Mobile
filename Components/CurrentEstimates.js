@@ -4,6 +4,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 
 export default class CurrentEstimates extends Component {
@@ -13,7 +14,6 @@ export default class CurrentEstimates extends Component {
 
   render() {
     const { currentEstimates, currentDelays } = this.props;
-    console.log(currentEstimates);
     return (
       <View style={{ flex: 1, paddingTop: 25, paddingRight: 25, paddingLeft: 25, paddingBottom: 50, backgroundColor: '#f7f7f7' }}>
         <Text style={styles.text}>Current Estimates:</Text>
@@ -37,7 +37,12 @@ export default class CurrentEstimates extends Component {
                     </View>
                   );
                 })
-              : <Text style={{ color: 'grey', fontSize: 24 }}>No incoming trains found...</Text>
+              : (
+                  <View>
+                    <Text style={{ color: 'grey', fontSize: 18, paddingBottom: 25, textAlign: 'center' }}>No incoming trains found...</Text>
+                    <ActivityIndicator size="large" color="#d7d7d7" />
+                  </View>
+                )
           }
         </ScrollView>
       </View>
@@ -47,13 +52,13 @@ export default class CurrentEstimates extends Component {
 
 const styles = StyleSheet.create({
   item: {
-    fontSize: 24,
+    fontSize: 18,
     color: '#3e3e3e',
     backgroundColor: '#fff',
     padding: 5
   },
   itemOnSchedule: {
-    fontSize: 24,
+    fontSize: 18,
     color: '#fff',
     backgroundColor: '#77dd77',
     padding: 5,
@@ -63,7 +68,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   itemDelay: {
-    fontSize: 24,
+    fontSize: 18,
     color: '#fff',
     backgroundColor: '#fc7171',
     padding: 5,
@@ -73,7 +78,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   text: {
-    fontSize: 24,
+    fontSize: 18,
     paddingBottom: 10
   },
   card: {

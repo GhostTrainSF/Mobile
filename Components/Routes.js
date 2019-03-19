@@ -20,6 +20,8 @@ export default class Routes extends Component {
       'N - Outbound',
       'J - Inbound',
       'J - Outbound',
+      '38 - Inbound',
+      '38 - Outbound',
     ];
   }
 
@@ -48,7 +50,7 @@ export default class Routes extends Component {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 24,
+    fontSize: 18,
     paddingBottom: 10
   },
 });
