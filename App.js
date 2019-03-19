@@ -12,6 +12,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       availableStops: [],
+      currentEstimates: [],
       selectedRoute: 'L - Inbound',
       selectedStop: '',
     }
@@ -29,13 +30,31 @@ export default class App extends Component {
     const routeDetails = selectedRoute.split('-');
     const route = routeDetails[0].trim();
     const direction = routeDetails[1].trim().toLowerCase();
-    const url = `ec2-3-18-105-71.us-east-2.compute.amazonaws.com/v1/api/stations/${route}/${direction}`;
+    const url = `http://ec2-3-18-105-71.us-east-2.compute.amazonaws.com/v1/api/stations/${route}/${direction}`;
+    console.log(url);
     try {
       const results = await fetch(url);
       const availableStops = await results.json();
-      this.setState({ availableStops });
+      this.setState({ availableStops}, () => {
+        this.handleStopPick(availableStops[0].tag);
+      });
     } catch(e) {
       console.error(e);
+    }
+  }
+
+  async _getPredictionsFromSelection() {
+    const { selectedRoute, selectedStop } = this.state;
+    const route = selectedRoute.split('-')[0].trim();
+    const url = `http://ec2-3-18-105-71.us-east-2.compute.amazonaws.com/v1/api/predictions/${route}/${selectedStop}`;
+    try {
+      const results = await fetch(url);
+      let currentEstimates = await results.json();
+      if (!Array.isArray(currentEstimates)) currentEstimates = [];
+      console.log(url);
+      this.setState({ currentEstimates });
+    } catch(e) {
+      console.log(e);
     }
   }
 
@@ -46,7 +65,8 @@ export default class App extends Component {
   }
 
   handleStopPick(selectedStop) {
-    this.setState({ selectedStop });
+    console.log(selectedStop);
+    this.setState({ selectedStop }, this._getPredictionsFromSelection);
   }
 
   render() {
@@ -84,15 +104,23 @@ export default class App extends Component {
           >
             {
               this.state.availableStops.map((stop, i) => {
-                return <Picker.Item label={stop.title} value={stop.title} key={i} />
+                return <Picker.Item label={stop.title} value={stop.tag} key={i} />
               })
             }
           </Picker>
         </View>
-        <View style={{ flex: 1, paddingTop: 25, paddingRight: 25, paddingLeft: 25, backgroundColor: '#f7f7f7' }}>
-          {/* <Text>Current Estimates:</Text> */}
+        <View style={{ flex: 1, paddingTop: 25, paddingRight: 25, paddingLeft: 25, paddingBottom: 50, backgroundColor: '#f7f7f7' }}>
+          <Text>Current Estimates:</Text>
           <ScrollView>
-        </ScrollView>
+            {
+              this.state.currentEstimates.length > 0
+                ? this.state.currentEstimates.map((est, i) => {
+                    if (parseInt(est) === 0) return;
+                    return (<Text style={styles.item} key={i}>{est} min</Text>);
+                  })
+                : <Text style={styles.item}>Error loading estimates</Text>
+            }
+          </ScrollView>
         </View>
       </View>
     );
@@ -102,8 +130,11 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   item: {
     padding: 10,
-    fontSize: 18,
+    fontSize: 22,
     height: 44,
     color: '#909090',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#f7f7f7' 
   },
 });
