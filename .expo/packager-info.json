@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 90333,
+  "packagerPid": 4030,
   "expoServerNgrokUrl": "https://rs-ypt.anonymous.ghost-train-mobile.exp.direct",
   "packagerNgrokUrl": "https://packager.rs-ypt.anonymous.ghost-train-mobile.exp.direct",
-  "ngrokPid": 90354,
+  "ngrokPid": 4060,
   "webpackServerPort": null
 }
