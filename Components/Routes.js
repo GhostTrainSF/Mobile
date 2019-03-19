@@ -48,7 +48,7 @@ export default class Routes extends Component {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 24,
+    fontSize: 18,
     paddingBottom: 10
   },
 });

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   text: {
-    fontSize: 24,
+    fontSize: 18,
     paddingBottom: 10
   },
   card: {
