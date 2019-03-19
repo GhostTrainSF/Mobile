@@ -4,7 +4,6 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  ActivityIndicator,
 } from 'react-native';
 
 export default class CurrentEstimates extends Component {
