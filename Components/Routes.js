@@ -20,6 +20,8 @@ export default class Routes extends Component {
       'N - Outbound',
       'J - Inbound',
       'J - Outbound',
+      '38 - Inbound',
+      '38 - Outbound',
     ];
   }
 
