@@ -21,10 +21,12 @@ export default class App extends Component {
 
     this.handleRoutePick = this.handleRoutePick.bind(this);
     this.handleStopPick = this.handleStopPick.bind(this);
+    this._getPredictionsFromSelection = this._getPredictionsFromSelection.bind(this);
   }
 
   componentDidMount() {
     this._getAvailableStopsFromRoute();
+    window.setInterval(this._getPredictionsFromSelection, 60000);
   }
 
   async _getAvailableStopsFromRoute() {
@@ -33,7 +35,6 @@ export default class App extends Component {
     const route = routeDetails[0].trim();
     const direction = routeDetails[1].trim().toLowerCase();
     const url = `http://ec2-3-18-105-71.us-east-2.compute.amazonaws.com/v1/api/stations/${route}/${direction}`;
-    console.log(url);
     try {
       const results = await fetch(url);
       const availableStops = await results.json();
@@ -69,7 +70,6 @@ export default class App extends Component {
   }
 
   handleStopPick(selectedStop) {
-    console.log(selectedStop);
     this.setState({ selectedStop }, this._getPredictionsFromSelection);
   }
 
@@ -78,7 +78,7 @@ export default class App extends Component {
       <View style={{ flex: 1, alignItems: "stretch" }}>
         <Header />
         <Routes
-          selectedRoute={this.selectedRoute}
+          selectedRoute={this.state.selectedRoute}
           handleRoutePick={this.handleRoutePick}
         />
         <Stops
