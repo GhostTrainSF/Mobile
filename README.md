@@ -11,7 +11,7 @@ We built _GhostTrain: San Francisco_ to mitigate these two problems.
 
 ## Our Solution. ##
 ### 1. Daily Time-Series Arrival Predictions
-_GhostTrain: San Francisco_ not only provides SF Muni's arrival predictions, but also delays for each prediction based on daily aggregation of time-series data collected from [NextBus's API]("https://gist.github.com/grantland/7cf4097dd9cdf0dfed14").
+_GhostTrain: San Francisco_ not only provides SF Muni's arrival predictions, but also delays for each prediction based on daily aggregation of time-series data collected from [NextBus's API](https://gist.github.com/grantland/7cf4097dd9cdf0dfed14).
 
 For example, suppose a train’s next arrival prediction is 10 minutes, but 10 minutes later the train has yet to come. If the next arrival prediction now says the next train is coming in 5 minutes, we know the train deviated 5 minutes from its original schedule. 
 
@@ -28,12 +28,12 @@ By providing this data to users, users can decide upon new travel plans before a
 _GhostTrain: San Francisco_ is built for all of you wonderful people! We are working hard to deploy our platform for the web, iOS, and Android. Feel free to watch/star/fork our repos, the more the merrier!
 
 ## Relevant Repositories ##
-[Web Platform]("https://github.com/GhostTrainSF/Web")
-[Mobile Platform]("https://github.com/GhostTrainSF/Mobile")
-[API Service]("https://github.com/GhostTrainSF/v1-api")
-[DB Service]("https://github.com/GhostTrainSF/db")
+ - [Web Platform](https://github.com/GhostTrainSF/Web)
+ - [Mobile Platform](https://github.com/GhostTrainSF/Mobile)
+ - [API Service](https://github.com/GhostTrainSF/v1-api)
+ - [DB Service](https://github.com/GhostTrainSF/db)
 
 ## Contributors ##
-Eric Cuyle ([@ecuyle]("https://github.com/ecuyle"))
-Jacky Lei ([@jackylei94]("https://github.com/JackyLei94"))
+ - Eric Cuyle ([@ecuyle](https://github.com/ecuyle))
+ - Jacky Lei ([@jackylei94](https://github.com/JackyLei94))
 
